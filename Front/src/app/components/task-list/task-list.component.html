@@ -1,0 +1,29 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Tareas</h4>
+    <div class="col">
+      <label for="user">Usuario </label>
+        <select id="user" name ="idUser" (change)="filterList($event)">
+          <option *ngFor="let i of userList" [value]="i.id">
+            {{i?.viewValue}}
+          </option>
+        </select>
+    </div>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let task of tasks; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTask(task, i)"
+      >
+        {{task.title}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <app-task-details
+      [viewMode]="true"
+      [currentTask]="currentTask"
+    ></app-task-details>
+  </div>
+</div>

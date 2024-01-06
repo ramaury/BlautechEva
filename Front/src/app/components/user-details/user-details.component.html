@@ -1,0 +1,68 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentUser.id">
+    <h4>Usuario</h4>
+    <div>
+      <label><strong>Usuario:</strong></label> {{ currentUser.name }}
+    </div>
+    <div>
+      <label><strong>Nombre:</strong></label>
+      {{ currentUser.fullname }}
+    </div>
+   
+    <a class="button"
+      routerLink="/users/{{ currentUser.id }}">
+      Editar
+    </a>
+  </div>
+
+  <div *ngIf="!currentUser">
+    <br />
+    <p>Seleccione un usuario</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentUser.id" class="edit-form">
+    <h4>Usuario</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentUser.name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="fullname">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullname"
+          [(ngModel)]="currentUser.fullname"
+          name="fullname"
+        />
+      </div>
+    </form>
+
+    <button class="button" (click)="deleteUser()">
+      Borrar
+    </button>
+
+    <button
+      type="submit"
+      class="button"
+      (click)="updateUser()"
+    >
+      Editar
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentUser.id">
+    <br />
+    <p>No se puede acceder al usuario</p>
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+<div>
+  <h4>Salvar Usuario</h4>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="user.name"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="fullname">Nombre</label>
+        <input
+          class="form-control"
+          id="fullname"
+          required
+          [(ngModel)]="user.fullname"
+          name="fullname"
+        />
+      </div>
+
+      <button (click)="saveUser()" class="btn btn-success">Guardar</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Usuario guardado</h4>
+      <button class="btn btn-success" (click)="newUser()">Agregar</button>
+    </div>
+  </div>
+</div>
